@@ -156,11 +156,11 @@ def plot_loss_curves(history):
 
 #Import classes names from directories
 #Directories should be named as classes
-# import pathlib
-# def classes_names(path):
-#     data_dir = pathlib.Path(path)
-#     classes_names = np.array(sorted([item.name for item in data_dir.glob('*')]))
-#     return classes_names
+import pathlib
+def classes_names(path):
+    data_dir = pathlib.Path(path)
+    classes_names = np.array(sorted([item.name for item in data_dir.glob('*')]))
+    return classes_names
 
 #Plot random pictures from dirrectory
 import random
@@ -192,3 +192,8 @@ def unzip_file(path):
     zip_ref.extractall()
     zip_ref.close()
 
+from os import walk, listdir
+#Walk through directories and inspect folders
+def walk_through_dir(path):
+    for dirpath, dirnames, filenames in walk(path):
+        print(f'There are {len(dirnames)} directories, {len(filenames)} files in {dirpath}')
