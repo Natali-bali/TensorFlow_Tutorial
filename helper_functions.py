@@ -183,6 +183,13 @@ def create_tf_board_callback(dir_name, experiment_name):
   print(f'Saving TensorBoard log files to {log_dir}')
   return tensorflow_callback
 
+from os import walk, listdir
+#Walk through directories and inspect folders
+def walk_through_dir(path):
+    for dirpath, dirnames, filenames in walk(path):
+        print(f'There are {len(dirnames)} directories, {len(filenames)} files in {dirpath}')
+
+
 #Unzip file
 """Unzip file
    Args: path to the file"""
@@ -192,8 +199,3 @@ def unzip_file(path):
     zip_ref.extractall()
     zip_ref.close()
 
-from os import walk, listdir
-#Walk through directories and inspect folders
-def walk_through_dir(path):
-    for dirpath, dirnames, filenames in walk(path):
-        print(f'There are {len(dirnames)} directories, {len(filenames)} files in {dirpath}')
