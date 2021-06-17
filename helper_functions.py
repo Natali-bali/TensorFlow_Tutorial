@@ -241,6 +241,6 @@ def load_and_prep_image(path, img_size = (224,224)):
 
 #Load and predict one image
 def load_and_pred(model, path, class_names = classes_names, image_size = (224,224)):
-  img = load_and_prep_image(path = path, img_size)
+  img = load_and_prep_image(img_size, path)
   pred = model.predict(img)
   print(f'Prediction: {class_names[pred[0].argmax()] }')
