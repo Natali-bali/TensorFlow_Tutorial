@@ -160,11 +160,13 @@ import pathlib
 def classes_names(path):
     data_dir = pathlib.Path(path)
     classes_names = np.array(sorted([item.name for item in data_dir.glob('*')]))
+    print(classes_names)
     return classes_names
 
 #Plot random pictures from dirrectory
 import random
-def plot_pictures(path, rows_num, columns_num):
+from keras import preprocessing
+def plot_pictures(path, rows_num = 3, columns_num):
     dir_names = listdir(path)
     plt.figure(figsize=(10,10))
     for dir_name, num in zip(dir_names, range(len(dir_names)-1)):
