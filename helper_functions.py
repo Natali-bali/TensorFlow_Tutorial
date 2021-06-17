@@ -130,45 +130,45 @@ def find_best_learning_rate(model, X_train, y_train, epochs = 100):
 # Plot Loss and Accuracy for Classification Model
 def plot_loss_curves(history):
     """
-  Args: TensorFlow model history object
-  Returns: separate loss curves for training and validation metrics.
-  """
-  train_loss = history.history['loss']
-  val_loss = history.history['val_loss']
-  train_accuracy = history.history['accuracy']
-  val_accuracy = history.history['val_accuracy']
-  epochs = range(len(history.history['loss']))
+    Args: TensorFlow model history object
+    Returns: separate loss curves for training and validation metrics.
+    """
+    train_loss = history.history['loss']
+    val_loss = history.history['val_loss']
+    train_accuracy = history.history['accuracy']
+    val_accuracy = history.history['val_accuracy']
+    epochs = range(len(history.history['loss']))
 
-  #Plot Loss
-  plt.plot(epochs, train_loss, label = 'Training Loss')
-  plt.plot(epochs, val_loss, label = 'Validation Loss')
-  plt.title('Loss')
-  plt.xlabel('epochs')
-  plt.legend()
+    #Plot Loss
+    plt.plot(epochs, train_loss, label = 'Training Loss')
+    plt.plot(epochs, val_loss, label = 'Validation Loss')
+    plt.title('Loss')
+    plt.xlabel('epochs')
+    plt.legend()
 
-  #Plot Accuracy
-  plt.figure()
-  plt.plot(epochs, train_accuracy, label = 'Training Accuracy')
-  plt.plot(epochs, val_accuracy, label = 'Validation Accuracy')
-  plt.title('Accuracy')
-  plt.xlabel('epochs')
-  plt.legend()
+    #Plot Accuracy
+    plt.figure()
+    plt.plot(epochs, train_accuracy, label = 'Training Accuracy')
+    plt.plot(epochs, val_accuracy, label = 'Validation Accuracy')
+    plt.title('Accuracy')
+    plt.xlabel('epochs')
+    plt.legend()
 
-#Import classes names from directories
-#Directories should be named as classes
-import pathlib
-def classes_names(path):
+    #Import classes names from directories
+    #Directories should be named as classes
+    import pathlib
+    def classes_names(path):
     data_dir = pathlib.Path(path)
     classes_names = np.array(sorted([item.name for item in data_dir.glob('*')]))
     return classes_names
 
-#Plot random pictures from dirrectory
-import random
+    #Plot random pictures from dirrectory
+    import random
 
-def plot_pictures(path, rows_num, columns_num):
-  dir_names = listdir(path)
-  plt.figure(figsize=(10,10))
-  for dir_name, num in zip(dir_names, range(len(dir_names)-1)):
+    def plot_pictures(path, rows_num, columns_num):
+    dir_names = listdir(path)
+    plt.figure(figsize=(10,10))
+    for dir_name, num in zip(dir_names, range(len(dir_names)-1)):
     files_names = listdir(path + '/' + dir_name)
     random_img = preprocessing.image.load_img(path + '/'+dir_name + '/' + random.choice(files_names))
     plt.subplot(rows_num, columns_num/rows_num, num+1)
