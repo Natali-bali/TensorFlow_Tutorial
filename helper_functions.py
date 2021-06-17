@@ -185,6 +185,9 @@ def create_tf_board_callback(dir_name, experiment_name):
   return tensorflow_callback
 
 #Unzip file
+"""Unzip file
+   Args: path to the file"""
+import zipfile
 def unzip_file(path):
     zip_ref = zipfile.ZipFile(path)
     zip_ref.extractall()
