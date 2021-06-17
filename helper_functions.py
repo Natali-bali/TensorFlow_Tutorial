@@ -154,18 +154,18 @@ def plot_loss_curves(history):
     plt.xlabel('epochs')
     plt.legend()
 
-    #Import classes names from directories
-    #Directories should be named as classes
-    import pathlib
-    def classes_names(path):
+#Import classes names from directories
+#Directories should be named as classes
+import pathlib
+def classes_names(path):
     data_dir = pathlib.Path(path)
     classes_names = np.array(sorted([item.name for item in data_dir.glob('*')]))
     return classes_names
 
-    #Plot random pictures from dirrectory
-    import random
+#Plot random pictures from dirrectory
+import random
 
-    def plot_pictures(path, rows_num, columns_num):
+def plot_pictures(path, rows_num, columns_num):
     dir_names = listdir(path)
     plt.figure(figsize=(10,10))
     for dir_name, num in zip(dir_names, range(len(dir_names)-1)):
