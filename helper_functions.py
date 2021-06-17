@@ -164,17 +164,16 @@ def classes_names(path):
 
 #Plot random pictures from dirrectory
 import random
-
 def plot_pictures(path, rows_num, columns_num):
     dir_names = listdir(path)
     plt.figure(figsize=(10,10))
     for dir_name, num in zip(dir_names, range(len(dir_names)-1)):
-    files_names = listdir(path + '/' + dir_name)
-    random_img = preprocessing.image.load_img(path + '/'+dir_name + '/' + random.choice(files_names))
-    plt.subplot(rows_num, columns_num/rows_num, num+1)
-    plt.imshow(random_img)
-    plt.title(dir_name)
-    plt.axis('off')
+        files_names = listdir(path + '/' + dir_name)
+        random_img = preprocessing.image.load_img(path + '/'+dir_name + '/' + random.choice(files_names))
+        plt.subplot(rows_num, columns_num/rows_num, num+1)
+        plt.imshow(random_img)
+        plt.title(dir_name)
+        plt.axis('off')
 
 #Create TensorBoard function
 import datetime
