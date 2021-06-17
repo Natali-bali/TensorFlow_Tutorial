@@ -201,3 +201,46 @@ def unzip_file(path):
     zip_ref.extractall()
     zip_ref.close()
 
+def create_model(url, num_classes = 10, input_shape = (224, 224, 3)):
+  """Takes a TensorFlow Hub URL and creates a Keras Sequential model with it.
+
+  Args:
+    model_url (str): A TensorFlow Hub feature extraction URL.
+    num_classes (int): Number of output neurons in output layer,
+      should be equal to number of target classes, default 10.
+
+  Returns:
+    An uncompiled Keras Sequential model with model_url as feature
+    extractor layer and Dense output layer with num_classes outputs.
+  """
+  feature_extractor_layer = hub.KerasLayer(url,
+                                           trainable=False, # freeze the underlying patterns
+                                           name='feature_extraction_layer',
+                                           input_shape = input_shape)
+  #Note if i add layer to model directly, it doent accept input_shape, so first need to create layer, then add it to model
+
+  model = tf.keras.Sequential([feature_extractor_layer,
+                              Dense(num_classes,
+                                    activation='softmax',
+                                    name='output_layer')
+                              ])
+
+  return model
+
+#Load and preprocess image
+"""Args: path = path to image, img_size = (224,224)"""
+def load_and_prep_image(path, img_size = (224,224)):
+  img = preprocessing.image.load_img(path)
+  plt.imshow(img)
+  plt.axis(False)
+  img = preprocessing.image.img_to_array(img)
+  img = preprocessing.image.smart_resize(img,img_size)
+  img = img/255.0
+  img = tf.expand_dims(img, axis = 0)
+  return img
+
+#Load and predict one image
+def load_and_pred(model, path, image_size = (224,224), class_names = classes_names):
+  img = load_and_prep_image(path = path, img_size)
+  pred = model.predict(img)
+  print(f'Prediction: {class_names[pred[0].argmax()] }')
