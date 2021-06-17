@@ -156,11 +156,11 @@ def plot_loss_curves(history):
 
 #Import classes names from directories
 #Directories should be named as classes
-import pathlib
-def classes_names(path):
-    data_dir = pathlib.Path(path)
-    classes_names = np.array(sorted([item.name for item in data_dir.glob('*')]))
-    return classes_names
+# import pathlib
+# def classes_names(path):
+#     data_dir = pathlib.Path(path)
+#     classes_names = np.array(sorted([item.name for item in data_dir.glob('*')]))
+#     return classes_names
 
 #Plot random pictures from dirrectory
 import random
