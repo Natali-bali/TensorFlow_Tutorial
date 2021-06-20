@@ -181,7 +181,7 @@ def plot_pictures(path, rows_num = 3):
 import datetime
 def create_tf_board_callback(dir_name, experiment_name):
   log_dir = dir_name + '/' + experiment_name + '/' + datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
-  tensorflow_callback = keras.callbacks.TensorBoard(log_dir=log_dir)
+  tensorflow_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir)
   print(f'Saving TensorBoard log files to {log_dir}')
   return tensorflow_callback
 
