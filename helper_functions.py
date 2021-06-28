@@ -177,7 +177,7 @@ def plot_pictures(path, rows_num = 3):
         plt.title(dir_name)
         plt.axis('off')
 
-#Create TensorBoard function
+#Create TensorBoard callback function
 import datetime
 def create_tf_board_callback(dir_name, experiment_name):
   log_dir = dir_name + '/' + experiment_name + '/' + datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
@@ -185,8 +185,20 @@ def create_tf_board_callback(dir_name, experiment_name):
   print(f'Saving TensorBoard log files to {log_dir}')
   return tensorflow_callback
 
-from os import walk, listdir
+#Create checkpoint callback function 
+def create_checkpoint(model_num):
+  """Returns checkpoint callback function, args: model number"""
+  checkpoint_filepath = 'checkpoints/checkpoint_'+str(model_num)+'.ckpt'
+  model_checkpoints = tf.keras.callbacks.ModelCheckpoint(checkpoint_filepath, monitor='val_loss', verbose=1, save_best_only=True,
+                                                          save_weights_only=True, save_freq='epoch',
+                                                          options=None)
+  return model_checkpoints
+
+
+
+
 #Walk through directories and inspect folders
+from os import walk, listdir
 def walk_through_dir(path):
     for dirpath, dirnames, filenames in walk(path):
         print(f'There are {len(dirnames)} directories, {len(filenames)} files in {dirpath}')
