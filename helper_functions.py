@@ -185,14 +185,14 @@ def create_tf_board_callback(dir_name, experiment_name):
   print(f'Saving TensorBoard log files to {log_dir}')
   return tensorflow_callback
 
-#Create checkpoint callback function 
-def create_checkpoint(model_num):
-  """Returns checkpoint callback function, args: model number"""
-  checkpoint_filepath = 'checkpoints/checkpoint_'+str(model_num)+'.ckpt'
-  model_checkpoints = tf.keras.callbacks.ModelCheckpoint(checkpoint_filepath, monitor='val_loss', verbose=1, save_best_only=True,
-                                                          save_weights_only=True, save_freq='epoch',
-                                                          options=None)
-  return model_checkpoints
+# #Create checkpoint callback function 
+# def create_checkpoint(model_num):
+#   """Returns checkpoint callback function, args: model number"""
+#   checkpoint_filepath = 'checkpoints/checkpoint_'+str(model_num)+'.ckpt'
+#   model_checkpoints = tf.keras.callbacks.ModelCheckpoint(checkpoint_filepath, monitor='val_loss', verbose=1, save_best_only=True,
+#                                                           save_weights_only=True, save_freq='epoch',
+#                                                           options=None)
+#   return model_checkpoints
 
 
 
